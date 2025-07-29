@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/mainFragment">
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.mywatchlist.MainFragment"
+        android:label="Watchlist" >
+        <action
+            android:id="@+id/action_mainFragment_to_addMovieFragment2"
+            app:destination="@id/addMovieFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_popularFragment2"
+            app:destination="@id/popularFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_searchFragment2"
+            app:destination="@id/searchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addMovieFragment"
+        android:name="com.example.mywatchlist.AddMovieFragment"
+        android:label="Add movie"
+        tools:layout="@layout/fragment_add_movie" >
+        <action
+            android:id="@+id/action_addMovieFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/popularFragment"
+        android:name="com.example.mywatchlist.PopularFragment"
+        android:label="Trending movies"
+        tools:layout="@layout/fragment_popular" >
+        <action
+            android:id="@+id/action_popularFragment_to_addMovieFragment"
+            app:destination="@id/addMovieFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.mywatchlist.SearchFragment"
+        android:label="Search movie"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_addMovieFragment"
+            app:destination="@id/addMovieFragment" />
+    </fragment>
+</navigation>
