@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -35,7 +37,7 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         adapter = WatchlistAdapter(
             onItemClick = { movie ->
-                findNavController().navigate(R.id.action_mainFragment_to_addMovieFragment2)
+                //do nothing
             },
             onRemoveClick = { movie ->
                 viewModel.removeMovie(movie)
@@ -55,7 +57,6 @@ class MainFragment : Fragment() {
             val bottomNav = requireActivity().findViewById<BottomNavigationView>(R.id.nav_bottom)
             bottomNav.selectedItemId = R.id.searchFragment
         }
-
 
     }
 

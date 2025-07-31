@@ -6,4 +6,6 @@
     <string name="watchlist">Watchlist</string>
     <string name="search">Search</string>
     <string name="popular">Popular</string>
+    <string name="add_movie">Add Movie</string>
+    <string name="pick_a_date">Pick a date</string>
 </resources>

@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.mywatchlist.data.model.Movie
 import com.example.mywatchlist.databinding.FragmentSearchBinding
 
 class SearchFragment : Fragment() {
@@ -17,7 +19,10 @@ class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: SearchViewModel by viewModels()
+    private val viewModel: SearchViewModel by viewModels {
+        ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+    }
+
     private lateinit var adapter: SearchAdapter
 
     override fun onCreateView(
@@ -30,12 +35,15 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         adapter = SearchAdapter(
             onItemClick = { movie ->
+                viewModel.saveSearch(movie)
                 val bundle = Bundle().apply {
                     putParcelable("movie", movie)
                 }
                 findNavController().navigate(R.id.action_searchFragment_to_addMovieFragment, bundle)
-            },
+            }
+            ,
             onAddClick = { movie ->
+                viewModel.saveSearch(movie)
                 val bundle = Bundle().apply {
                     putParcelable("movie", movie)
                 }
@@ -51,6 +59,20 @@ class SearchFragment : Fragment() {
                 if (it.length >= 3) {
                     viewModel.searchMovies(it)
                 }
+            }
+        }
+
+        viewModel.recentSearches.observe(viewLifecycleOwner) { history ->
+            if (binding.etSearch.text.isNullOrBlank()) {
+                adapter.submitList(history.map {
+                    Movie(
+                        id = it.id,
+                        title = it.title,
+                        releaseDate = null,
+                        overview = null,
+                        posterPath = it.posterPath
+                    )
+                })
             }
         }
 

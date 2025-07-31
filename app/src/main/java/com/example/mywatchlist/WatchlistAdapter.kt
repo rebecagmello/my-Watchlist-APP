@@ -30,7 +30,7 @@ class WatchlistAdapter(
         fun bind(movie: WatchlistMovie) {
             binding.tvTitle.text = movie.title
             binding.tvYear.text = movie.year
-            binding.tvDate.text = "Agendado para: ${movie.scheduledDate}"
+            binding.tvDate.text = "Scheduled for: ${movie.scheduledDate}"
 
             Glide.with(binding.root.context)
                 .load(movie.posterUrl)

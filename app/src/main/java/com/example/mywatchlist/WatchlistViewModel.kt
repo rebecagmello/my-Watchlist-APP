@@ -3,10 +3,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mywatchlist.data.dao.WatchlistDao
-import com.example.mywatchlist.data.db.AppDatabase
 import com.example.mywatchlist.data.entity.WatchlistMovie
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+
 class WatchlistViewModel(private val dao: WatchlistDao) : ViewModel() {
 
     val watchlist: LiveData<List<WatchlistMovie>> = dao.getAll()
@@ -22,7 +22,5 @@ class WatchlistViewModel(private val dao: WatchlistDao) : ViewModel() {
             dao.delete(movie)
         }
     }
-
-
 }
 

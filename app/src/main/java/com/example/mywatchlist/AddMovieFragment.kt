@@ -2,12 +2,12 @@ package com.example.mywatchlist
 
 import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -15,8 +15,6 @@ import com.example.mywatchlist.data.db.AppDatabase
 import com.example.mywatchlist.data.entity.WatchlistMovie
 import com.example.mywatchlist.data.model.Movie
 import com.example.mywatchlist.databinding.FragmentAddMovieBinding
-import com.example.mywatchlist.databinding.FragmentMainBinding
-import kotlin.getValue
 
 class AddMovieFragment : Fragment() {
 
@@ -48,7 +46,7 @@ class AddMovieFragment : Fragment() {
 
 
         if (movie == null) {
-            Toast.makeText(requireContext(), "Erro ao carregar filme", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Failed to add movie", Toast.LENGTH_SHORT).show()
             findNavController().popBackStack()
             return
         }
@@ -56,8 +54,8 @@ class AddMovieFragment : Fragment() {
         selectedMovie = movie
 
         binding.tvTitle.text = selectedMovie.title
-        binding.tvYear.text = "Ano: ${selectedMovie.releaseDate?.take(4) ?: "N/A"}"
-        binding.tvOverview.text = "Sinopse: ${selectedMovie.overview}"
+        binding.tvYear.text = "Year: ${selectedMovie.releaseDate?.take(4) ?: "N/A"}"
+        binding.tvOverview.text = "Summary: ${selectedMovie.overview}"
 
         Glide.with(requireContext())
             .load("https://image.tmdb.org/t/p/w500${selectedMovie.posterPath}")
@@ -78,9 +76,8 @@ class AddMovieFragment : Fragment() {
             )
 
             viewModel.addMovie(movieToSave)
-            Toast.makeText(requireContext(), "Filme adicionado!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Movie added!", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_addMovieFragment_to_mainFragment)
-
 
         }
     }

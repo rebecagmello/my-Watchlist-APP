@@ -5,10 +5,13 @@
         <item name="android:windowBackground">?android:colorBackground</item>
         <item name="android:textColorPrimary">@color/white</item>
         <item name="actionBarStyle">@style/MyToolbarStyle</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+
     </style>
 
     <style name="MyToolbarStyle" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
-        <item name="background">@color/pink</item> <!-- cor do fundo da toolbar -->
+        <item name="background">@color/pink</item>
         <item name="titleTextStyle">@style/MyToolbarTitleText</item>
     </style>
 
